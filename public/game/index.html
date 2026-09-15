@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f7f3" />
+    <meta
+      name="description"
+      content="A little friendly competition. Play a beautifully simple, mobile-friendly game of tic-tac-toe with a friend."
+    />
+    <title>Tic Tac Club — A classic, together.</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Tic Tac Club home"
+        ><span class="brand-icon" aria-hidden="true">×<span>○</span></span> tic
+        tac club<span class="brand-dot">.</span></a
+      >
+      <button class="help-button" id="help-button">
+        <span class="help-icon" aria-hidden="true">?</span> How to play
+      </button>
+    </header>
+    <main>
+      <section class="game" aria-labelledby="game-title">
+        <div class="intro">
+          <span class="eyebrow"
+            ><span class="live-dot"></span> TWO PLAYERS. ONE CLASSIC.</span
+          >
+          <h1 id="game-title">Your move<span>.</span></h1>
+          <p>A little strategy. A little friendly rivalry.</p>
+        </div>
+        <div class="scores" aria-label="Session scoreboard">
+          <div class="score-card player-x active" id="x-card">
+            <div class="score-label">
+              <span class="small-mark x-mark" aria-hidden="true"></span> PLAYER
+              X
+            </div>
+            <strong id="x-score">0</strong
+            ><span class="score-caption">The first move</span>
+          </div>
+          <div class="score-card draws">
+            <div class="score-label">
+              <span aria-hidden="true">=</span> DRAWS
+            </div>
+            <strong id="draw-score">0</strong
+            ><span class="score-caption">Evenly matched</span>
+          </div>
+          <div class="score-card player-o" id="o-card">
+            <div class="score-label">
+              <span class="small-mark o-mark" aria-hidden="true"></span> PLAYER
+              O
+            </div>
+            <strong id="o-score">0</strong
+            ><span class="score-caption">The next move</span>
+          </div>
+        </div>
+        <div class="board-card">
+          <div class="board-header">
+            <div
+              class="turn-status"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <span
+                id="turn-mark"
+                class="small-mark x-mark"
+                aria-hidden="true"
+              ></span
+              ><span id="status">Player X’s turn</span>
+            </div>
+            <span class="round-label">ROUND <span id="round">01</span></span>
+          </div>
+          <div class="board" role="group" aria-label="Tic-tac-toe board">
+            <button
+              class="cell"
+              data-index="0"
+              aria-label="Row 1, column 1, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="1"
+              aria-label="Row 1, column 2, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="2"
+              aria-label="Row 1, column 3, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="3"
+              aria-label="Row 2, column 1, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="4"
+              aria-label="Row 2, column 2, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="5"
+              aria-label="Row 2, column 3, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="6"
+              aria-label="Row 3, column 1, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="7"
+              aria-label="Row 3, column 2, empty"
+            ></button>
+            <button
+              class="cell"
+              data-index="8"
+              aria-label="Row 3, column 3, empty"
+            ></button>
+          </div>
+          <p class="board-hint" id="hint">Pick a square. Make your mark.</p>
+        </div>
+        <button class="new-round" id="new-round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 10a9 9 0 1 1 2 8M3 4v6h6" />
+          </svg>
+          New round
+          <svg
+            class="button-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17 17 7M7 7h10v10" />
+          </svg>
+        </button>
+        <div class="game-meta">
+          <span
+            ><span class="local-dot" aria-hidden="true"></span> Local
+            multiplayer</span
+          ><button id="reset-button">Reset scores</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      Less scrolling. <span>More playing.</span
+      ><span class="footer-marks" aria-hidden="true">× ○</span>
+    </footer>
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-header">
+        <h2 id="help-title">A classic for a reason.</h2>
+        <button
+          class="close-dialog"
+          aria-label="Close instructions"
+          data-close="help-dialog"
+        >
+          ×
+        </button>
+      </div>
+      <p>Grab a friend and share this screen.</p>
+      <ol>
+        <li>
+          Player X starts every round. Take turns choosing an empty square.
+        </li>
+        <li>Get three of your marks in a row, column, or diagonal to win.</li>
+        <li>If the board fills up with no winner, it’s a draw. Go again!</li>
+      </ol>
+      <p class="dialog-note">
+        Scores last until you reset them or reload the page. Starting a new
+        round keeps your scores.
+      </p>
+      <button class="dialog-action" data-close="help-dialog">Let’s play</button>
+    </dialog>
+    <dialog id="reset-dialog" aria-labelledby="reset-title">
+      <div class="dialog-header">
+        <h2 id="reset-title">A fresh start?</h2>
+        <button
+          class="close-dialog"
+          aria-label="Cancel reset"
+          data-close="reset-dialog"
+        >
+          ×
+        </button>
+      </div>
+      <p>This clears both players’ scores, draws, and the current board.</p>
+      <div class="dialog-actions">
+        <button class="cancel-action" data-close="reset-dialog">
+          Keep playing</button
+        ><button class="dialog-action" id="confirm-reset">
+          Reset everything
+        </button>
+      </div>
+    </dialog>
+  </body>
+</html>
